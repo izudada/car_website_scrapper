@@ -1,6 +1,7 @@
 import scrapy
 from ..items import EdmundsScraperItem
 
+
 class BaseInfoSpider(scrapy.Spider):
     """ This spider basically scrapes the car urls from the base url and stores the in a variable car_urls"""
     name = 'edmunds'
@@ -30,11 +31,15 @@ class BaseInfoSpider(scrapy.Spider):
         items = EdmundsScraperItem()
         name = response.css('h1.text-black::text').extract()
         name += response.css('span.text-black::text').extract()
+        price = response.css('div.heading-2').css('span::text').extract()
+        vin = response.css('div.text-gray-darker').css('span::text').extract()[1]
+        vehicle_sum = response.css('.vehicle-summary').css('.row').css('.col::text').extract()
+        top_spec = response.css('.features-and-specs').css('.row').css('li.mb-0_5::text').extract()
 
         #   Adding rquired details to items data
         items['Name'] = name
-        items['Price'] = response.css('div.heading-2').css('span::text').extract()
-        items['VIN'] = response.css('div.text-gray-darker').css('span::text').extract()[1]
-        items['Vehicle_Summary'] = response.css('.vehicle-summary').css('.row').css('.col::text').extract()
-        items['Top_Features_And_Specs'] = response.css('.features-and-specs').css('.row').css('li.mb-0_5::text').extract()
+        items['Price'] = price
+        items['VIN'] = vin
+        items['Vehicle_Summary'] = vehicle_sum
+        items['Top_Features_And_Specs'] = top_spec
         yield items
