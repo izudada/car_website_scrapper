@@ -46,6 +46,6 @@ scrapy crawl edmunds -o filename.xlsx
 
 ## Note 
 
-You need to be connected to the internet to successfully scrape all data into yoor excel file. This process takes more than 20mins.
+You need to be connected to the internet to successfully scrape all data into yoor excel file. This process takes 30mins or less to complete.
 
 Enjoy your experience
