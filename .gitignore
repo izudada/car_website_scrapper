@@ -1,0 +1,5 @@
+env/
+
+edmunds_scraper/edmunds_scraper/spiders/__pycache__/
+
+.~lock.output.xlsx#
